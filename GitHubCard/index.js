@@ -4,13 +4,26 @@ import axios from "axios";
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const followersArray = [
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell",
+];
 
-axios
-  .get("https://api.github.com/users/alexandermonteiro")
-  .then((resp) => {
-    document.querySelector(".cards").appendChild(githubCard(resp.data));
-  })
-  .catch((err) => console.error(err));
+for (let i = 0; i < followersArray.length; i++) {
+  getGitCard(followersArray[i]);
+}
+
+function getGitCard(username) {
+  axios
+    .get(`https://api.github.com/users/${username}`)
+    .then((resp) => {
+      document.querySelector(".cards").appendChild(githubCard(resp.data));
+    })
+    .catch((err) => console.error(err));
+}
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -35,10 +48,6 @@ axios
     Using that array, iterate over it, requesting data for each user, creating a new card for each
     user, and adding that card to the DOM.
 */
-
-const followersArray = [tetondan, dustinmyers, justsml, luishrd, bigknell];
-
-function getGitCard
 
 function githubCard(gitInfo) {
   const card = document.createElement("div");
